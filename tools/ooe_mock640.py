@@ -639,7 +639,7 @@ def scr_settings(bg):
     panel(img, 5, 3, 34, 26, "SETTINGS")
     d = ImageDraw.Draw(img)
     rows = [("DAS", "10 FR"), ("ARR", "02 FR"), ("GHOST", "ON"), ("MUSIC", "ON"), ("MUSIC VOL", "#"),
-            ("EFFECTS", "ON"), ("BACKDROPS", "RANDOM"), ("KEYS", "REMAP")]
+            ("EFFECTS", "ON"), ("BACKDROPS", "ON"), ("KEYS", "REMAP")]
     for i, (k, v) in enumerate(rows):
         y = 92 + i * 34
         sel = i == 0
