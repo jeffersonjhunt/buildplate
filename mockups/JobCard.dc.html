@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Job card</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#ffb000}a:hover{color:#ffd166}
+</style>
+</helmet>
+<div style="width: 1120px; height: 600px; box-sizing: border-box; padding: 60px 40px; background: #0b0a09; color: #e8e4e0; font-family: Inter, system-ui, sans-serif; display: flex; gap: 40px; align-items: flex-start">
+  <img src="png/screen-jobcard.png" alt="Job card: the orbital shipyard backdrop full screen, a print head laying layers of a hull on a giant build plate above a glowing planet; a band across the lower third reads JOB 05, OVERCLOCK, ORBITAL SHIPYARD, 3.8 ROWS/S, 10 LAYERS" style="width: 640px; height: 480px; image-rendering: pixelated; display: block; flex-shrink: 0">
+  <div style="display: flex; flex-direction: column; gap: 14px; min-width: 0">
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; color: #cc5500">STATE · JOBCARD (NEW)</div>
+    <h2 style="margin: 0; font-size: 28px; font-weight: 700">Job card</h2>
+    <ul style="margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.55; color: #b8b2ab; display: flex; flex-direction: column; gap: 6px">
+      <li>Shown at the start of a game and at every new job, about 2 s (120 frames), so each job's backdrop is seen whole before the panels cover most of it.</li>
+      <li>Band y 340–431 in $111 with $C50 rules top and bottom. JOB label $998; the number at 5× in $FA0; the song title at 3× in $EDD; the backdrop's name and the job's speed in $998; the small OOE mark at right.</li>
+      <li>The new song starts under the card. Gravity is paused; any key skips it.</li>
+      <li>Load the next backdrop from the card while the old job's last line clears, then wipe it in behind the band.</li>
+      <li>In overtime there's no new card; the job number just keeps counting in the SHIFT panel.</li>
+    </ul>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1120,"height":600}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

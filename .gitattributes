@@ -1,0 +1,8 @@
+# Pictures, sound and assembled data: bytes, never text.
+*.png binary
+*.mp3 binary
+*.wav binary
+*.bin binary
+*.OGX binary
+*.SID binary
+*.SCR binary

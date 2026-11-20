@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Game over</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#ffb000}a:hover{color:#ffd166}
+</style>
+</helmet>
+<div style="width: 1120px; height: 600px; box-sizing: border-box; padding: 60px 40px; background: #0b0a09; color: #e8e4e0; font-family: Inter, system-ui, sans-serif; display: flex; gap: 40px; align-items: flex-start">
+  <img src="png/screen-gameover.png" alt="Game over screen: the stack has turned grey; a red-framed LINE STOP box lists OUTPUT 00184200, JOB 12 and LAYERS 117, with a red NEW HI SHIFT stamp; an asteroid field and a derelict freighter behind" style="width: 640px; height: 480px; image-rendering: pixelated; display: block; flex-shrink: 0">
+  <div style="display: flex; flex-direction: column; gap: 14px; min-width: 0">
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; color: #cc5500">STATE · OVER</div>
+    <h2 style="margin: 0; font-size: 28px; font-weight: 700">Line stop</h2>
+    <ul style="margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.55; color: #b8b2ab; display: flex; flex-direction: column; gap: 6px">
+      <li>On block out or lock out the stack greys row by row from the bottom, one row every 2 frames, redrawn from a grey block image (no palette to swap).</li>
+      <li>Then the LINE STOP box over the well: x 212–427, y 148–340, 2-px frame in $F42, labels $998, small values right-aligned at x 404.</li>
+      <li>NEW HI SHIFT stamp only when the score beats HISCORE.DAT, tilted +3°, landing with the game-over effect.</li>
+      <li>Music stops with SID_STOP; the game-over cue plays on the ES5503.</li>
+      <li>R restarts at the same JOB; Q returns to A&gt;.</li>
+    </ul>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1120,"height":600}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

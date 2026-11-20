@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ten jobs: backdrops and songs</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#ffb000}a:hover{color:#ffd166}
+</style>
+</helmet>
+<div style="width: 3440px; height: 1300px; box-sizing: border-box; padding: 40px; background: #0b0a09; color: #e8e4e0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; gap: 28px">
+  <div style="display: flex; gap: 80px; align-items: flex-end">
+    <div style="display: flex; flex-direction: column; gap: 8px; max-width: 1400px">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; color: #cc5500">SCREEN TYPE 7 · 640×480 · RGB444 · 600 KB EACH</div>
+      <h2 style="margin: 0; font-size: 34px; font-weight: 700">Ten jobs: one backdrop and one song each</h2>
+      <p style="margin: 0; font-size: 16px; line-height: 1.5; color: #b8b2ab">Each job has its own picture and its own SID song, calmer at job 1 and more intense by job 10, as the speed rises. Drawn by a seeded generator, quantized to 12-bit colour with 4×4 ordered dither. Behind play they are dimmed to 75%; the job card shows each one whole first.</p>
+    </div>
+    <ul style="margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.55; color: #b8b2ab; max-width: 1400px">
+      <li>One backdrop is 600 KB; two display buffers already take 1.2 MB of the card's 2 MB, so load each job's backdrop from the SD card at the job change (about a quarter of a second by DMA) while the job card shows.</li>
+      <li>Draw it into both buffers once. Panels are opaque, so play never needs the backdrop again until the next job. Estimates until the new video plan lands.</li>
+    </ul>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 32px 40px">
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <img src="../art/backdrops/job01-moonbase.png" alt="Moonbase: grey cratered surface, lit domes, an earthrise" style="width: 640px; height: 480px; image-rendering: pixelated; display: block">
+      <div style="font-size: 15px; color: #b8b2ab"><span style="font-family: 'JetBrains Mono', monospace; color: #ffb000">JOB 01</span> · <span style="color: #e8e4e0; font-weight: 600">First Shift</span> · Moonbase · synthpop, 116 BPM</div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <img src="../art/backdrops/job02-gas-giant.png" alt="Gas giant with rings and a small moon" style="width: 640px; height: 480px; image-rendering: pixelated; display: block">
+      <div style="font-size: 15px; color: #b8b2ab"><span style="font-family: 'JetBrains Mono', monospace; color: #ffb000">JOB 02</span> · <span style="color: #e8e4e0; font-weight: 600">Warm-Up</span> · Gas giant · French house, 120 BPM</div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <img src="../art/backdrops/job03-orbital-station.png" alt="Ring station in a nebula with a passing ship" style="width: 640px; height: 480px; image-rendering: pixelated; display: block">
+      <div style="font-size: 15px; color: #b8b2ab"><span style="font-family: 'JetBrains Mono', monospace; color: #ffb000">JOB 03</span> · <span style="color: #e8e4e0; font-weight: 600">Conveyor</span> · Orbital station · industrial, 122 BPM</div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <img src="../art/backdrops/job04-ice-aurora.png" alt="Green and violet aurora over icy mountains, reflected in a frozen lake, a small lit outpost" style="width: 640px; height: 480px; image-rendering: pixelated; display: block">
+      <div style="font-size: 15px; color: #b8b2ab"><span style="font-family: 'JetBrains Mono', monospace; color: #ffb000">JOB 04</span> · <span style="color: #e8e4e0; font-weight: 600">Night Shift</span> · Ice planet · melancholic synth, 124 BPM</div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <img src="../art/backdrops/job05-shipyard.png" alt="Orbital shipyard: gantries and a print head laying a hull on a giant build plate above a glowing planet" style="width: 640px; height: 480px; image-rendering: pixelated; display: block">
+      <div style="font-size: 15px; color: #b8b2ab"><span style="font-family: 'JetBrains Mono', monospace; color: #ffb000">JOB 05</span> · <span style="color: #e8e4e0; font-weight: 600">Overclock</span> · Orbital shipyard · robot rock, 126 BPM</div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <img src="../art/backdrops/job06-twin-suns.png" alt="Twin suns setting over red dunes and rock spires, a faint ringed planet above" style="width: 640px; height: 480px; image-rendering: pixelated; display: block">
+      <div style="font-size: 15px; color: #b8b2ab"><span style="font-family: 'JetBrains Mono', monospace; color: #ffb000">JOB 06</span> · <span style="color: #e8e4e0; font-weight: 600">Hot Bed</span> · Twin-sun desert · disco house, 128 BPM</div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <img src="../art/backdrops/job07-derelict.png" alt="Asteroids around a derelict freighter" style="width: 640px; height: 480px; image-rendering: pixelated; display: block">
+      <div style="font-size: 15px; color: #b8b2ab"><span style="font-family: 'JetBrains Mono', monospace; color: #ffb000">JOB 07</span> · <span style="color: #e8e4e0; font-weight: 600">Toolpath</span> · Derelict · dark arpeggio epic, 132 BPM</div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <img src="../art/backdrops/job08-neon-city.png" alt="Night city skyline with lit windows, wordless neon signs and traffic streaks under a purple sky" style="width: 640px; height: 480px; image-rendering: pixelated; display: block">
+      <div style="font-size: 15px; color: #b8b2ab"><span style="font-family: 'JetBrains Mono', monospace; color: #ffb000">JOB 08</span> · <span style="color: #e8e4e0; font-weight: 600">Spindle Speed</span> · Neon city · swung stomp, 136 BPM</div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <img src="../art/backdrops/job09-grid-horizon.png" alt="Striped sun over a perspective grid" style="width: 640px; height: 480px; image-rendering: pixelated; display: block">
+      <div style="font-size: 15px; color: #b8b2ab"><span style="font-family: 'JetBrains Mono', monospace; color: #ffb000">JOB 09</span> · <span style="color: #e8e4e0; font-weight: 600">Thermal Runaway</span> · Grid horizon (also the title) · acid, 142 BPM</div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <img src="../art/backdrops/job10-black-hole.png" alt="A black hole with a glowing orange accretion disk and its lensed arc, stars bent around it" style="width: 640px; height: 480px; image-rendering: pixelated; display: block">
+      <div style="font-size: 15px; color: #b8b2ab"><span style="font-family: 'JetBrains Mono', monospace; color: #ffb000">JOB 10</span> · <span style="color: #e8e4e0; font-weight: 600">Max Feed Rate</span> · Black hole · anthem, 150 BPM, and overtime</div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":3440,"height":1300}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

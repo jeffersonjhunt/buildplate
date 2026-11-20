@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Pause</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#ffb000}a:hover{color:#ffd166}
+</style>
+</helmet>
+<div style="width: 1120px; height: 600px; box-sizing: border-box; padding: 60px 40px; background: #0b0a09; color: #e8e4e0; font-family: Inter, system-ui, sans-serif; display: flex; gap: 40px; align-items: flex-start">
+  <img src="png/screen-pause.png" alt="Pause screen: the playfield is empty and reads LINE HOLD with a menu of RESUME, RESTART, SETTINGS and QUIT; HOLD and NEXT panels are empty; a lunar surface with domes and an earthrise behind" style="width: 640px; height: 480px; image-rendering: pixelated; display: block; flex-shrink: 0">
+  <div style="display: flex; flex-direction: column; gap: 14px; min-width: 0">
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; color: #cc5500">STATE · PAUSED</div>
+    <h2 style="margin: 0; font-size: 28px; font-weight: 700">Line hold</h2>
+    <ul style="margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.55; color: #b8b2ab; display: flex; flex-direction: column; gap: 6px">
+      <li>On pause the well is filled with empty cells, the falling piece and ghost are hidden, and HOLD and NEXT are cleared, so nothing can be studied while paused.</li>
+      <li>LINE HOLD in $FA0 at y 160; menu items 24 px apart, the selected one $EDD with the amber &gt;, the rest $998.</li>
+      <li>The SHIFT stats stay up. The backdrop stays, at its play dimming.</li>
+      <li>Music is held with PB_PAUSE and resumes where it stopped. Window blur doesn't exist on the OO-1; Break is OODOS's and ends the program.</li>
+      <li>RESUME runs the 3-2-1 countdown (60 frames each) before play continues.</li>
+    </ul>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1120,"height":600}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

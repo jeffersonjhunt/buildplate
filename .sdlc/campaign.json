@@ -1,0 +1,38 @@
+{
+  "task": "OOE Build Plate 1.0: BUILDPLT.COM, a falling-block game for the OO-1 on OODOS 0.12 (direct 640, double buffered; ten jobs, each with its own backdrop and two-SID song; ES5503 effects), built from spec.md in PLAN.md's units B0-B11",
+  "tier": "campaign",
+  "why": "new repo and a whole program over twelve units and weeks; depends on the OO-1 repo's unmerged feat/video-640; several artifacts (COM, OGX, SCR, ten SIDs, WAV, card image); each unit is undeployed (verified in the emulator, ships nothing to a runtime)",
+  "required_phases": [
+    "survey",
+    "intake",
+    "plan",
+    "isolate",
+    "implement",
+    "verify",
+    "review",
+    "land",
+    "deploy",
+    "observe",
+    "release"
+  ],
+  "completed": [
+    "survey"
+  ],
+  "evidence": {
+    "survey": {
+      "text": "OO-1 repo surveyed at feat/video-640 8bf169f1 (OODOS 0.12, OOLIB interface 13): hw/video640.md (types 6/7, the owner's decisions, costs as built), Technical Reference ch. 6 and 7, Programmer's Guide ch. 8 (GB_DIRECT, GX_FLIP, GX_BCOPY within one bitmap, GX_FONT 8x16, GX_ASSET's limit, DM_VFILLW, the 1.5 MB program area), two-SID PSID support (SID B at D420/D500, chips' model a jumper), AGENTS.md rules, mkasset combine/direct640. Patterns: ../../ooamp (separate repo built against ../6502), rebalancer (spec/PLAN/mockups/.sdlc layout), the sdlc skill 1.2.1. Owner's answers 2026-11-20 (reference/). Mockups, ten backdrops, ten songs and sixteen effects made and approved by the owner; all regenerate byte-identically from tools/mkreference.py. Not yet checked: the build itself (B0), DM_VCOPY's step parameters, GX_VALLOC's alignment, ES5503 table placement rule.",
+      "at": "2026-11-20T22:37:16Z"
+    }
+  },
+  "started": "2026-11-20T22:37:16Z",
+  "config": {
+    "claude_md": "/home/codemonkey/workspace/games/buildplate/CLAUDE.md",
+    "overrides": {
+      "release.merge_by": "host",
+      "verify.require_negative": "true"
+    },
+    "override_problems": [],
+    "merge_by": "host",
+    "require_negative": true
+  }
+}

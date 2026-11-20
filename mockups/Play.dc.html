@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Play</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#ffb000}a:hover{color:#ffd166}
+</style>
+</helmet>
+<div style="width: 1120px; height: 600px; box-sizing: border-box; padding: 60px 40px; background: #0b0a09; color: #e8e4e0; font-family: Inter, system-ui, sans-serif; display: flex; gap: 40px; align-items: flex-start">
+  <img src="png/screen-play.png" alt="Play screen: header bar with the OOE mark, BUILD PLATE and HI 00184200; HOLD panel with a T piece; SHIFT panel showing OUTPUT, JOB and LAYERS; a T-SPIN DOUBLE callout; the playfield with a stack, a falling T and its dotted ghost; NEXT queue of five pieces; a ringed gas giant behind" style="width: 640px; height: 480px; image-rendering: pixelated; display: block; flex-shrink: 0">
+  <div style="display: flex; flex-direction: column; gap: 14px; min-width: 0">
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; color: #cc5500">STATE · PLAYING</div>
+    <h2 style="margin: 0; font-size: 28px; font-weight: 700">Play</h2>
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; line-height: 1.6; color: #b8b2ab; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 16px; row-gap: 2px">
+      <span style="color: #9a9590">Cell</span><span>16×16 px, 40×30 grid</span>
+      <span style="color: #9a9590">Header</span><span>row 0–1, y 0–31</span>
+      <span style="color: #9a9590">Well frame</span><span>cells (14,4)–(25,26)</span>
+      <span style="color: #9a9590">Playfield</span><span>cols 15–24, rows 6–25</span>
+      <span style="color: #9a9590">Hidden sliver</span><span>row 5, flat $111</span>
+      <span style="color: #9a9590">HOLD</span><span>(2,5)–(12,9)</span>
+      <span style="color: #9a9590">SHIFT</span><span>(2,11)–(12,22)</span>
+      <span style="color: #9a9590">Callout</span><span>(2,24)–(12,26)</span>
+      <span style="color: #9a9590">NEXT</span><span>(27,5)–(37,21)</span>
+      <span style="color: #9a9590">Footer</span><span>y 448–479</span>
+    </div>
+    <ul style="margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.55; color: #b8b2ab; display: flex; flex-direction: column; gap: 6px">
+      <li>Blocks are an 8×8 design shown doubled (16×16 on screen): light edge, upper and lower face, dark edge, white glint. The falling piece and its ghost are sprites on the card's 320×240 grid, so locked blocks use the same doubled design. Ghost: the dotted edge in the piece's base colour.</li>
+      <li>OUTPUT is the score, JOB the level ($FA0), LAYERS the lines.</li>
+      <li>Callout box appears only with action text, cleared after 60 frames.</li>
+      <li>Panels are opaque, drawn over the backdrop; between them the backdrop shows, dimmed to 75%.</li>
+    </ul>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1120,"height":600}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>
