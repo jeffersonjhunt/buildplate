@@ -3,7 +3,7 @@
 - [owner-answers-2026-11-20.md](owner-answers-2026-11-20.md): the owner's answers on driving the USB keyboard from
   `CcpRig`, `mkasset.py`'s layouts and `combine`, and playing effects on the ES5503. Written against the 6502 repo's
   `main` `ae8b59d9`; spec.md folds them in. Its parts about 8×8 tile layers predate the move to direct 640.
-- The design document this spec grew from: "OOE Build Plate for the OO-1 — Implementation Spec"
+- The design document this spec grew from: "One Off Stax for the OO-1 — Implementation Spec"
   (<https://claude.ai/artifact/GF7kAbj5z5XYM21NJLk7cT>). [../spec.md](../spec.md) replaces it; edit the spec here.
 - The mockup canvas: <https://claude.ai/artifact/49iQcyFDEBNBNhvGoxN83x> (copied into [../mockups/](../mockups/)).
 

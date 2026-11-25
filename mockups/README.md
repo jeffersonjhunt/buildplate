@@ -1,6 +1,6 @@
 # Mockups
 
-Every screen of OOE Build Plate, rendered pixel for pixel for screen type 7 (direct 640: 640×480, RGB444) by
+Every screen of One Off Stax, rendered pixel for pixel for screen type 7 (direct 640: 640×480, RGB444) by
 `tools/ooe_mock640.py`, through `tools/mkreference.py`. Change the script, not the PNGs.
 
 | Screen | PNG | Board (notes, coordinates, colours) |
@@ -15,7 +15,7 @@ Every screen of OOE Build Plate, rendered pixel for pixel for screen type 7 (dir
 | The ten jobs' backdrops | [../art/backdrops/](../art/backdrops/) | [Backdrops.dc.html](Backdrops.dc.html) |
 | Name, palette, art direction | [png/names.png](png/names.png) (the first draft's title plates) | [Main.dc.html](Main.dc.html) |
 
-The `.dc.html` boards and `canvas.json` are a copy of the design canvas "OOE Build Plate — Screen Mockups"
+The `.dc.html` boards and `canvas.json` are a copy of the design canvas "One Off Stax — Screen Mockups"
 (<https://claude.ai/artifact/49iQcyFDEBNBNhvGoxN83x>), with their images pointed at this repo's files. Read them for
 their notes; open the PNGs for the pixels. Where a note and [../spec.md](../spec.md) disagree, the spec wins.
 

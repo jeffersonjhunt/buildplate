@@ -1,4 +1,4 @@
-"""sidtrack: a small two-SID tracker for Build Plate's music.
+"""sidtrack: a small two-SID tracker for One Off Stax's music.
 
 A song is instruments + patterns + sections. Every 1/60 s frame the engine writes SID
 registers, as a .sid play routine would, and two reSIDfp 8580s render the result

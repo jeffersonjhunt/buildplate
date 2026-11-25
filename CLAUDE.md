@@ -1,13 +1,13 @@
-# OOE Build Plate — working here
+# One Off Stax — working here
 
-A falling-block game for the OO-1, `BUILDPLT.COM`. The spec is [spec.md](spec.md), the units of work are
+A falling-block game for the OO-1, `STAX.COM`. The spec is [spec.md](spec.md), the units of work are
 [PLAN.md](PLAN.md), the screens are [mockups/](mockups/). Start with the spec, then the OO-1 repo's `AGENTS.md`.
 
 ## Where things are
 
-- **This repo:** `games/buildplate` in the workspace (`/home/codemonkey/workspace/games/buildplate` in the
-  container, `/Users/jhunt/Source/Edda/games/buildplate` on the Mac). Origin: the Gitea server,
-  `ssh://git@git.tworivers:2222/jeffersonjhunt/buildplate.git` (web <https://git.tworivers:9443>). GitHub and
+- **This repo:** `games/stax` in the workspace (`/home/codemonkey/workspace/games/stax` in the
+  container, `/Users/jhunt/Source/Edda/games/stax` on the Mac). Origin: the Gitea server,
+  `ssh://git@git.tworivers:2222/jeffersonjhunt/stax.git` (web <https://git.tworivers:9443>). GitHub and
   CodeCommit are only ever mirrors, never the origin.
 - **The OO-1 repo:** `../../6502` (`jeffersonjhunt/6502`). The game needs OODOS 0.12 (OOLIB interface 13: direct
   640, `GB_DIRECT`, `DM_VFILLW`), on its branch `feat/video-640` until that merges. Build against a checkout of that
@@ -21,7 +21,7 @@ A falling-block game for the OO-1, `BUILDPLT.COM`. The spec is [spec.md](spec.md
 
 ## How to work
 
-- **One worktree a unit:** `games/buildplate.worktrees/<unit>` on a branch `feat/<unit>` (`feat/b0-scaffold`, ...).
+- **One worktree a unit:** `games/stax.worktrees/<unit>` on a branch `feat/<unit>` (`feat/b0-scaffold`, ...).
   Never work on `main`. The owner merges.
 - **Generated assets are made by `tools/`,** never edited by hand: change the script and run it again. The mockups
   are generated too (`tools/ooe_mock640.py`); the game's drawing must stay the same design, so draw the UI sheet

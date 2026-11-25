@@ -1,4 +1,4 @@
-# OOE Build Plate — plan
+# One Off Stax — plan
 
 The units of work, in order. Each is one branch in its own worktree, carried through the `sdlc` skill's phases
 (see [CLAUDE.md](CLAUDE.md)), and merged by the owner before the next starts. "Done" is what the unit's
@@ -13,7 +13,7 @@ The spec is [spec.md](spec.md); where this plan and the spec disagree, the spec 
   OODOS and the emulator built into `build/` from `$(SIX)`'s sources and nothing written into `$(SIX)`; ca65 with
   OODOS's `include/` and `backplane.inc`; linked with `oolib.lib`; OODOS's 65C816 rules gate and `w1.py` over the
   image; ld65's warnings fatal; `make`, `make test`, `make webcard`, `make assets` (runs `tools/`).
-- `src/buildplt.s`: checks `FT_INFO` for interface version 13 and the flags (spec, "Timing and the main loop"),
+- `src/stax.s`: checks `FT_INFO` for interface version 13 and the flags (spec, "Timing and the main loop"),
   prints one line with function 9 and ends with `JMP WBOOT`; prints why and exits on a failed check.
 - `test/`: a `CcpRig` smoke test that runs it and reads the line; a negative test (FT_INFO patched to interface 12)
   that sees the refusal.
@@ -30,7 +30,7 @@ The spec is [spec.md](spec.md); where this plan and the spec disagree, the spec 
 ## B2 — Video foundation
 
 - `tools/mkuisheet.py`: the UI sheet, the sprite images, `src/sheet.inc` and the 4 KB font (`src/font.inc`), all
-  drawn by `tools/ooe_mock640.py`'s code so the game and the mockups are one design. `BUILDPLT.OGX` by `mkasset.py`.
+  drawn by `tools/ooe_mock640.py`'s code so the game and the mockups are one design. `STAX.OGX` by `mkasset.py`.
 - `render/screen.s`: the two screens (16 KB aligned), the draw list, apply/flip/replay; the primitives: sheet copy
   by `DM_VCOPY`, `GX_FRECT`, `GX_TEXT`, the row shift by `GX_BCOPY`.
 - Draw the play screen's static parts (header, panels, empty well, footer) over a plain backdrop.
@@ -58,7 +58,7 @@ The spec is [spec.md](spec.md); where this plan and the spec disagree, the spec 
 ## B6 — Play screen
 
 - Sprites for the piece and the ghost; locked cells; HUD; HOLD and NEXT; the callout; the flash and the row shift;
-  pause; game over's grey and LINE STOP. `BUILDPLT /T`.
+  pause; game over's grey and LINE STOP. `STAX /T`.
 - **Measure** the worst frame (hard drop, four-line clear, spawn) and the row shift's frames at job 10.
 - **Done:** the game tests in spec.md ("Required") pass, except the job card's.
 
@@ -73,7 +73,7 @@ The spec is [spec.md](spec.md); where this plan and the spec disagree, the spec 
 
 ## B8 — Music
 
-- `tools/mksid.py` and `player/`: each song of `tools/bp_album.py` as a two-SID PSID with a 6502 play routine;
+- `tools/mksid.py` and `player/`: each song of `tools/stax_album.py` as a two-SID PSID with a 6502 play routine;
   `JOB01.SID`–`JOB10.SID`. Loading and playing them by the `.sid` library; pause, resume, volume, job changes.
 - **Measure** the play routine's worst frame on the 6510 (about 17,000 cycles is the frame).
 - **Done:** for all ten songs, every frame's SID registers from the play routine equal `sidtrack.play()`'s; one
@@ -81,7 +81,7 @@ The spec is [spec.md](spec.md); where this plan and the spec disagree, the spec 
 
 ## B9 — Effects
 
-- `tools/mkwaves.py`: `BUILDPLT.WAV` and `src/waves.inc` from `audio/sfx/`; the ES5503 claimed, loaded and played,
+- `tools/mkwaves.py`: `STAX.WAV` and `src/waves.inc` from `audio/sfx/`; the ES5503 claimed, loaded and played,
   one oscillator a kind, the priorities.
 - **Done:** a test triggers each effect and reads its oscillator's registers; the game runs without the chip.
 

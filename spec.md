@@ -1,6 +1,6 @@
-# OOE Build Plate — specification
+# One Off Stax — specification
 
-**OOE Build Plate** (`BUILDPLT.COM`, tagline STACK FAST) is a single-player falling-block puzzle game for the
+**One Off Stax** (`STAX.COM`, tagline STACK FAST) is a single-player falling-block puzzle game for the
 **OO-1**: a W65C02S at 7.16 MHz running **OODOS**, a CP/M 3-style OS. It draws, plays sound, reads input and keeps
 time only through **OOLIB**, OODOS's game services (BDOS functions 80–83 and the linked library `oolib.lib`), never
 by touching that hardware itself. The play follows modern guideline mechanics: a 7-bag, SRS rotation, hold, a ghost
@@ -12,7 +12,7 @@ OOLIB interface version 13, video card revision 2 with layer type 7 ("direct 640
 the screens are in [mockups/](mockups/); the art, audio and the scripts that make them are in [art/](art/),
 [audio/](audio/) and [tools/](tools/).
 
-**For the coding agent.** This is its own repo, `games/buildplate` beside the OO-1 repo, built against
+**For the coding agent.** This is its own repo, `games/stax` beside the OO-1 repo, built against
 `../../6502` the way OO-Amp (`../../ooamp`) is: read its Makefile before writing this one. In the OO-1 repo read
 `AGENTS.md` first and follow it. Where this spec and the OO-1 repo's books disagree, the books win; where a book is
 silent, trust the code. Your references are the OODOS Programmer's Guide (`docs/oodos-programmers-guide/`, chapter 8
@@ -60,12 +60,12 @@ branch, built in the emulator and not yet merged to `main`. Until they are, buil
 
 | What | Made by | Notes |
 | --- | --- | --- |
-| `BUILDPLT.COM` | ca65/ld65, linked with `oolib.lib` | through OODOS's rules gate and `w1.py`, as OO-Amp's Makefile does |
-| `BUILDPLT.OGX` | `mkasset.py direct640` + `sprites` + `combine` | the UI sheet (blocks, frame corners, logo, title name, stamps) and the sprite images |
+| `STAX.COM` | ca65/ld65, linked with `oolib.lib` | through OODOS's rules gate and `w1.py`, as OO-Amp's Makefile does |
+| `STAX.OGX` | `mkasset.py direct640` + `sprites` + `combine` | the UI sheet (blocks, frame corners, logo, title name, stamps) and the sprite images |
 | `src/font.inc`, `src/sheet.inc` | `tools/mkuisheet.py` | the game's face as a 4 KB `GX_FONT` font, and the sheet's coordinates |
 | `TITLE.OGX`, `BG01.OGX` … `BG10.OGX` | `mkasset.py direct640` | one 640×480 picture each: the title's, and each job's at play brightness |
 | `JOB01.SID` … `JOB10.SID` | `tools/mksid.py` + a 6502 play routine | two-SID PSID tunes, one per job |
-| `BUILDPLT.WAV` | `tools/mkwaves.py` | the sixteen effects laid out for the ES5503's wave RAM, with their table |
+| `STAX.WAV` | `tools/mkwaves.py` | the sixteen effects laid out for the ES5503's wave RAM, with their table |
 | `HISCORE.DAT`, `SETTINGS.DAT` | the game | one 128-byte record each; absent means defaults |
 | a card image | `make webcard`, as OO-Amp's | every file above on one drive, for the emulator's web UI |
 
@@ -230,12 +230,12 @@ spec.md, PLAN.md         this spec; the units of work
 Makefile                 (unit B0) after ../../ooamp/Makefile: SIX ?= ../../6502
 cfg/                     (B0) the ld65 config(s)
 src/
-  buildplt.s             entry, init, main loop, clean exit
+  stax.s             entry, init, main loop, clean exit
   game.inc               constants, state offsets, sprite and sheet coordinates
   platform/frame.s       event area, FT_WAIT, catch-up
   platform/input.s       EV_KEYS + controller 1 -> held mask, queue drain, DAS/ARR
   platform/sound.s       JOBnn.SID by the .sid library, ES5503 effects
-  platform/files.s       BUILDPLT.OGX, the .SCR screens, the .SID and .WAV files, HISCORE/SETTINGS
+  platform/files.s       STAX.OGX, the .SCR screens, the .SID and .WAV files, HISCORE/SETTINGS
   engine/pieces.s        shape tables
   engine/srs.s           kick tables + rotate
   engine/rng.s           xorshift16 + 7-bag
@@ -302,7 +302,7 @@ a second memory area at `$8000–$BFFC` in this repo's cfg; nothing may land in 
 - **Startup:** `FT_INFO` (function 80, X = 0): interface version **13 or higher** with `OA_FRAME`, `OA_INPUT`,
   `OA_SOUND` and `OA_DMA` set, and a revision 2 video card; otherwise print why with function 9 and exit. Open the
   256-byte event area (`FT_OPEN`), set `ES_NOQUEUE`, set the console mode, `GX_INIT` with the area, allocate the two
-  screens, load `BUILDPLT.OGX`, start the title.
+  screens, load `STAX.OGX`, start the title.
 - **Main loop:** apply the frame's draw list to the back buffer → `GX_FLIP` if anything was drawn, else `FT_WAIT`
   (either way the loop runs once a vertical blank) → `GX_SPRSHOW` → read input → `game_step` → effects → replay last
   frame's list on the new back buffer. Compare `EV_FRAMES`' low byte with the last frame handled; if frames were
@@ -348,7 +348,7 @@ never a screen. All drawing goes through OOLIB and function 83; the game writes 
 | --- | --- | --- |
 | Screen A | 2,400 | `GX_VALLOC`, 16 KB aligned |
 | Screen B | 2,400 | the same |
-| UI sheet | ≤ 900 | `BUILDPLT.OGX`'s direct 640 part: 640 wide, ≤ 180 rows |
+| UI sheet | ≤ 900 | `STAX.OGX`'s direct 640 part: 640 wide, ≤ 180 rows |
 | Sprite images | 16 | eight 8×8 4-bit images, 256 bytes each as `mkasset.py` pads them |
 | Palette, sprite table | 4 | `GX_PALINIT`, `GX_SPRINIT` |
 | Free | ≥ 420 | of 6,144 |
@@ -379,7 +379,7 @@ a half-drawn frame is never shown. Frames with no operations skip the flip and w
 - **Measure** each primitive in the emulator in unit B2 and record the cycles in `hw/` notes or the PR: the plan
   above assumes a 16-copy cell is a few thousand cycles and a full well shift fits in the 6-frame flash.
 
-### The UI sheet (`BUILDPLT.OGX`)
+### The UI sheet (`STAX.OGX`)
 
 One direct 640 PNG, `art/ui-sheet.png`, drawn by `tools/mkuisheet.py` from the mockup generator's code (unit B2), at
 most 640×180, then `mkasset.py direct640`, plus the sprite images by `mkasset.py sprites`, joined by `combine`. It
@@ -388,7 +388,8 @@ holds, at coordinates `tools/mkuisheet.py` also writes to `src/sheet.inc`:
 - the seven block cells, a grey block, the flash cell, the empty well cell and the hidden-sliver cell, 16×16 each;
 - the empty well row (160×16) for clears and pause;
 - the panels' rounded corners (8×8, the four of each colour used);
-- the OOE mark at its two sizes, BUILD PLATE at 4× with its shadow, and the two stamps (STACK FAST, NEW HI SHIFT).
+- the OOE mark at its two sizes (40 and 16 px tall), ONE OFF at 3×, STAX at 8× with its shadow, ONE OFF STAX at 2× for
+  the header, and the two stamps (STACK FAST, NEW HI SHIFT).
 
 ### Blocks and sprites
 
@@ -404,7 +405,7 @@ holds, at coordinates `tools/mkuisheet.py` also writes to `src/sheet.inc`:
 
 | Part | Where | Contents |
 | --- | --- | --- |
-| Header | y 0–31 | OOE mark, BUILD PLATE, HI and the high score |
+| Header | y 0–31 | OOE mark, ONE OFF STAX, HI and the high score |
 | Well | frame (224,64)–(415,431); playfield (240,96)–(399,415); sliver y 80–95 | 10 × 20 cells; the sliver shows the hidden row just above |
 | HOLD | (32,80)–(207,159) | the held piece |
 | SHIFT | (32,176)–(207,367) | OUTPUT (score), JOB, LAYERS (lines) |
@@ -432,7 +433,7 @@ pixel for pixel, with its coordinates and colours.
 
 | Screen | Contents |
 | --- | --- |
-| Title | `TITLE.SCR` (the grid horizon at full brightness), the title plate: OOE mark, DIGITAL MANUFACTURING, BUILD PLATE, the STACK FAST stamp; menu START JOB, JOB 01–10, SETTINGS, QUIT; HI SHIFT |
+| Title | `TITLE.SCR` (the grid horizon at full brightness), the title plate: OOE mark, ONE OFF, STAX, the STACK FAST stamp; menu START JOB, JOB 01–10, SETTINGS, QUIT; HI SHIFT |
 | Job card | the job's backdrop with a band (y 340–431): JOB and its number, the song's title, the backdrop's name, the speed; 120 frames, any key skips |
 | Countdown | 3-2-1 over the well, 60 frames each; also after resume |
 | Pause (LINE HOLD) | as Drawing rules; RESUME, RESTART, SETTINGS, QUIT |
@@ -441,7 +442,9 @@ pixel for pixel, with its coordinates and colours.
 
 ### Art direction
 
-- **OOE brand:** the OOE mark (two rounded-square Os and three bars) and DIGITAL MANUFACTURING from the logo; colours
+- **The name:** One Off Stax. STAX is said "stacks"; ONE OFF is the maker's name, the same as the OO-1's. The title
+  sets ONE OFF small over a big amber STAX; the header spells it out at text size.
+- **OOE brand:** the OOE mark (two rounded-square Os and three bars) from the logo; colours
   from the OOE site, rounded to 12 bits; the red rubber stamp from the boot splash's VINTAGE FAST, used only for the
   tagline and NEW HI SHIFT.
 - **Mid-80s:** one monoline face with cut corners, all caps; thin rounded 1-pixel frames with the label cut into the
@@ -468,7 +471,7 @@ Each job has its own backdrop and song; overtime keeps job 10's.
 ### Backdrops
 
 - Masters are `art/backdrops/*.png`, 640×480 RGB444 with 4×4 ordered dither, drawn by `tools/ooe_mock640.py` and
-  `tools/bp_backdrops.py` (seeded, so they rebuild the same). The build (`tools/mkscreens.py`, unit B7) writes each
+  `tools/stax_backdrops.py` (seeded, so they rebuild the same). The build (`tools/mkscreens.py`, unit B7) writes each
   job's at play brightness (75%) as `BGnn.SCR`, and the grid horizon at full brightness as `TITLE.SCR`.
 - A `.SCR` file is a raw screen: 614,400 bytes, the card's words in order, no header, so it loads straight into a
   screen's pages: `DM_LOAD` into the staging area and `DM_VWRITE` to the screen, piece by piece, as `GX_ASSET` does.
@@ -483,7 +486,7 @@ Each job has its own backdrop and song; overtime keeps job 10's.
 ### Songs
 
 - `JOB01.SID` … `JOB10.SID`: two-SID PSID tunes (SID B at `$D420`), NTSC, a play call each 1/60 s. The song data
-  is `tools/bp_album.py`, played by `tools/sidtrack.py`, a two-SID tracker whose `play(song)` returns every frame's
+  is `tools/stax_album.py`, played by `tools/sidtrack.py`, a two-SID tracker whose `play(song)` returns every frame's
   register writes; the renders in [audio/songs/](audio/songs/) are those writes through two reSIDfp 8580s.
 - Unit B8 writes the real thing: `tools/mksid.py` turns a song into a compact data block, and `player/` a 6502 play
   routine for the card's 6510 that turns the block back into the same register writes. The test: run each PSID's
@@ -514,7 +517,7 @@ OODOS splits the sound card into parts a program claims with function 82: the **
   main CPU.
   1. **Claim** with `SN_CLAIM` and `SC_DOC`. Refused without a revision 2 sound card or while another program or
      RSX holds it: then run without effects.
-  2. **Load** `BUILDPLT.WAV` once with `SN_WAVE` (8-bit samples by DMA into the 128 KB wave RAM). `tools/mkwaves.py`
+  2. **Load** `STAX.WAV` once with `SN_WAVE` (8-bit samples by DMA into the 128 KB wave RAM). `tools/mkwaves.py`
      (unit B9) lays the sixteen samples out in the power-of-two tables the chip reads, on matching boundaries (check
      Technical Reference chapter 7, "Revision 2", for the rule), and writes `src/waves.inc`: each effect's address,
      table size, frequency and volume.
@@ -523,7 +526,7 @@ OODOS splits the sound card into parts a program claims with function 82: the **
      the sample's end.
   4. **Release** with `SN_RELEASE` on exit.
 - **Effects:** move, rotate, hold, hard drop, lock, single, double, triple, quad, T-spin, new job, line stop, count,
-  go, menu move, menu select ([audio/sfx/](audio/sfx/), made by `tools/bp_sfx.py`: 8-bit unsigned at 20,000 Hz,
+  go, menu move, menu select ([audio/sfx/](audio/sfx/), made by `tools/stax_sfx.py`: 8-bit unsigned at 20,000 Hz,
   every byte 1–255, since a 0 byte halts an oscillator; 112 KB in all). The countdown is "count" three times and
   "go". Each kind has its own oscillator (the chip has 32) so effects never cut each other off. At most one new
   effect a frame, from the main loop, highest priority first: line stop > quad/T-spin > new job > clears > lock >
@@ -535,10 +538,10 @@ OODOS splits the sound card into parts a program claims with function 82: the **
 
 ## Files
 
-- `BUILDPLT.OGX` by `GX_ASSET` at startup; the `.SCR` screens by `DM_LOAD`/`DM_VWRITE`; the `.SID` and
-  `BUILDPLT.WAV` by ordinary file reads (or `DM_LOAD` for speed) into a buffer outside `$4000–$7FFF`, then
+- `STAX.OGX` by `GX_ASSET` at startup; the `.SCR` screens by `DM_LOAD`/`DM_VWRITE`; the `.SID` and
+  `STAX.WAV` by ordinary file reads (or `DM_LOAD` for speed) into a buffer outside `$4000–$7FFF`, then
   `SID_PLAY` / `SN_WAVE`.
-- Missing or bad `BUILDPLT.OGX` or `TITLE.SCR`: restore the console, print one line with function 9, exit. A missing
+- Missing or bad `STAX.OGX` or `TITLE.SCR`: restore the console, print one line with function 9, exit. A missing
   backdrop: a plain `$111` screen. A missing `.SID` or `.WAV`: no music or no effects.
 - `HISCORE.DAT` (the top score, BCD) and `SETTINGS.DAT` (one record), read at startup, written on change.
 
@@ -584,8 +587,8 @@ sim65; decide in B3 after reading `emulator/test/host/`).
   the panels and the well's frame must match exactly (they are drawn by the same code); a cell in the well must be
   the block design. A test that compares nothing fails.
 - **Required:** title shown; a game starts with its job card; hold right and the piece reaches the wall (the sprite
-  table); hard drop and the well's pixels; pause blanks the well; Q returns to `A>`; `BUILDPLT.OGX` missing gives
-  the error line and a clean `A>`; and `BUILDPLT /T`, a built-in replay through the real program that prints the
+  table); hard drop and the well's pixels; pause blanks the well; Q returns to `A>`; `STAX.OGX` missing gives
+  the error line and a clean `A>`; and `STAX /T`, a built-in replay through the real program that prints the
   final score and the state's checksum, against golden values.
 
 ### Manual checks (emulator)

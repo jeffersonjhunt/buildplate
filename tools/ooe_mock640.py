@@ -1,4 +1,4 @@
-"""OOE Build Plate: the mockups, and the design the game draws.
+"""One Off Stax: the mockups, and the design the game draws.
 
 Screen type 7 (direct 640): 640x480, a $0RGB word a pixel (RGB444, 4,096 colours), double buffered. The layout
 is a 40x30 grid of 16x16 cells. Everything is rounded to 12-bit colour; pictures get 4x4 ordered dither.
@@ -456,7 +456,7 @@ def dim(img, f=0.75):
 
 
 # ---------------------------------------------------------------- screens
-NAME = "BUILD PLATE"
+NAME = "ONE OFF STAX"
 
 
 def header(img, hi="00184200"):
@@ -568,11 +568,11 @@ def scr_title(bg):
     d = ImageDraw.Draw(img)
     d.rounded_rectangle([96, 16, 543, 214], radius=10, fill=PANEL)
     d.rounded_rectangle([102, 22, 537, 208], radius=8, outline=LINE)
-    mw = mark_w(48)
-    ooe_mark(img, (W - mw) // 2, 34, 48, BONE)
-    text(img, (W - tw("DIGITAL MANUFACTURING")) // 2, 94, "DIGITAL MANUFACTURING", DIM)
-    text(img, (W - tw(NAME, 4)) // 2, 120, NAME, AMBER, scale=4, shadow=ORANGE)
-    stamp(img, 330, 160, "STACK FAST")
+    mw = mark_w(40)
+    ooe_mark(img, (W - mw) // 2, 34, 40, BONE)
+    text(img, (W - tw("ONE OFF", 3)) // 2, 88, "ONE OFF", BONE, scale=3)
+    text(img, (W - tw("STAX", 8)) // 2, 116, "STAX", AMBER, scale=8, shadow=ORANGE)
+    stamp(img, 338, 166, "STACK FAST")
     d.rounded_rectangle([176, 316, 463, 432], radius=8, fill=PANEL)
     d.rounded_rectangle([182, 322, 457, 426], radius=6, outline=LINE)
     for i, (s, sel) in enumerate((("START JOB", True), ("JOB 01", False), ("SETTINGS", False), ("QUIT", False))):

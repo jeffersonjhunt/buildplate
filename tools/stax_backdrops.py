@@ -1,4 +1,4 @@
-"""Build Plate: five more backdrops (640x480, RGB444), for ten in all, one per job."""
+"""One Off Stax: five more backdrops (640x480, RGB444), for ten in all, one per job."""
 import math
 import random
 import sys

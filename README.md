@@ -1,4 +1,4 @@
-# OOE Build Plate
+# One Off Stax
 
 A falling-block puzzle game for the OO-1 microcomputer: a W65C02S running OODOS, with a 640×480 direct-colour
 screen, two SIDs and an ES5503. Ten jobs, each with its own backdrop and song, getting faster, then endless

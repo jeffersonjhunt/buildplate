@@ -21,15 +21,15 @@ sys.path.insert(0, str(HERE))
 
 from PIL import Image, ImageDraw  # noqa: E402
 
-import bp_backdrops  # noqa: E402
+import stax_backdrops  # noqa: E402
 import ooe_mock640 as m  # noqa: E402
 
 # job -> (backdrop name, its generator)
 JOBS = [
     ("moonbase", m.bg_moonbase), ("gas-giant", m.bg_gas_giant), ("orbital-station", m.bg_station),
-    ("ice-aurora", bp_backdrops.bg_ice_aurora), ("shipyard", bp_backdrops.bg_shipyard),
-    ("twin-suns", bp_backdrops.bg_twin_suns), ("derelict", m.bg_derelict), ("neon-city", bp_backdrops.bg_neon_city),
-    ("grid-horizon", m.bg_grid_horizon), ("black-hole", bp_backdrops.bg_black_hole),
+    ("ice-aurora", stax_backdrops.bg_ice_aurora), ("shipyard", stax_backdrops.bg_shipyard),
+    ("twin-suns", stax_backdrops.bg_twin_suns), ("derelict", m.bg_derelict), ("neon-city", stax_backdrops.bg_neon_city),
+    ("grid-horizon", m.bg_grid_horizon), ("black-hole", stax_backdrops.bg_black_hole),
 ]
 SONG_TITLES = ["First Shift", "Warm-Up", "Conveyor", "Night Shift", "Overclock", "Hot Bed", "Toolpath",
                "Spindle Speed", "Thermal Runaway", "Max Feed Rate"]
@@ -82,27 +82,27 @@ def pictures():
 
 
 def effects():
-    import bp_sfx
+    import stax_sfx
     out = ROOT / "audio" / "sfx"
     out.mkdir(parents=True, exist_ok=True)
-    for name, f in bp_sfx.EFFECTS:
-        u = bp_sfx.to_doc(f())
-        bp_sfx.save_wav8(out / f"{name}.wav", u[:-1])
-    print(f"audio/sfx/: {len(bp_sfx.EFFECTS)} effects")
+    for name, f in stax_sfx.EFFECTS:
+        u = stax_sfx.to_doc(f())
+        stax_sfx.save_wav8(out / f"{name}.wav", u[:-1])
+    print(f"audio/sfx/: {len(stax_sfx.EFFECTS)} effects")
 
 
 def songs():
-    import bp_album
+    import stax_album
     import sidtrack
     out = ROOT / "audio" / "songs"
     out.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory() as tmp:
-        for s in bp_album.SONGS:
+        for s in stax_album.SONGS:
             stem = f"job{s.job:02d}-{s.title.lower().replace(' ', '-')}"
             wav = Path(tmp) / f"{stem}.wav"
             sidtrack.render(sidtrack.play(s), wav)
             subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(wav), "-b:a", "160k",
-                            "-metadata", f"title={s.title}", "-metadata", "album=OOE Build Plate",
+                            "-metadata", f"title={s.title}", "-metadata", "album=One Off Stax",
                             "-metadata", f"track={s.job}", str(out / f"{stem}.mp3")], check=True)
             print(f"audio/songs/{stem}.mp3")
 

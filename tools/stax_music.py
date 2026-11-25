@@ -1,4 +1,4 @@
-"""Build Plate: title/background music, an original tune for the OO-1's two SIDs.
+"""One Off Stax: title/background music, an original tune for the OO-1's two SIDs.
 
 A small tracker writes SID registers once a frame (60 Hz, NTSC, as a .sid's play
 routine would), and two reSIDfp 8580s render them, SID A left and SID B right.
@@ -265,5 +265,5 @@ def render(frames, path):
 
 if __name__ == "__main__":
     OUT.mkdir(parents=True, exist_ok=True)
-    secs = render(play(SONG), OUT / "build-plate-theme.wav")
+    secs = render(play(SONG), OUT / "stax-theme.wav")
     print(f"theme: {secs:.1f} s, {len(SONG)} bars")

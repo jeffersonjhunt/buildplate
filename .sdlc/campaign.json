@@ -1,5 +1,5 @@
 {
-  "task": "OOE Build Plate 1.0: BUILDPLT.COM, a falling-block game for the OO-1 on OODOS 0.12 (direct 640, double buffered; ten jobs, each with its own backdrop and two-SID song; ES5503 effects), built from spec.md in PLAN.md's units B0-B11",
+  "task": "One Off Stax 1.0: STAX.COM, a falling-block game for the OO-1 on OODOS 0.12 (direct 640, double buffered; ten jobs, each with its own backdrop and two-SID song; ES5503 effects), built from spec.md in PLAN.md's units B0-B11",
   "tier": "campaign",
   "why": "new repo and a whole program over twelve units and weeks; depends on the OO-1 repo's unmerged feat/video-640; several artifacts (COM, OGX, SCR, ten SIDs, WAV, card image); each unit is undeployed (verified in the emulator, ships nothing to a runtime)",
   "required_phases": [
@@ -26,7 +26,7 @@
   },
   "started": "2026-11-20T22:37:16Z",
   "config": {
-    "claude_md": "/home/codemonkey/workspace/games/buildplate/CLAUDE.md",
+    "claude_md": "/home/codemonkey/workspace/games/stax/CLAUDE.md",
     "overrides": {
       "release.merge_by": "host",
       "verify.require_negative": "true"

@@ -1,4 +1,4 @@
-"""Build Plate: sound effects as ES5503 wave RAM samples.
+"""One Off Stax: sound effects as ES5503 wave RAM samples.
 
 8-bit unsigned, 1..255 (a 0 byte halts the oscillator, so it only ends a sample),
 20,000 Hz. Each effect is synthesised from numbers, with a shop-floor flavour:

@@ -1,8 +1,8 @@
 # audio
 
-Reference sound for OOE Build Plate, made by [../tools/](../tools/) (`mkreference.py`).
+Reference sound for One Off Stax, made by [../tools/](../tools/) (`mkreference.py`).
 
-- `songs/jobNN-<title>.mp3`: the ten songs, one per job, rendered from `tools/bp_album.py` by `tools/sidtrack.py`
+- `songs/jobNN-<title>.mp3`: the ten songs, one per job, rendered from `tools/stax_album.py` by `tools/sidtrack.py`
   through two emulated 8580 SIDs (SID A left, SID B right). They are the reference for how `JOBnn.SID` must sound;
   the exact reference is `sidtrack.play()`'s register writes. Styles, tempos and keys are in
   [../spec.md](../spec.md), "Jobs: backdrops and songs".

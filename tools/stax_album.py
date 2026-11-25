@@ -1,9 +1,9 @@
-"""Build Plate: ten songs, one per job, each in its own style (synthpop, French house, industrial,
+"""One Off Stax: ten songs, one per job, each in its own style (synthpop, French house, industrial,
 robot rock, acid, TRON-like, ...). All melodies are original. Rendered on two emulated 8580 SIDs."""
 import sys
 from pathlib import Path
 
-import bp_music as theme
+import stax_music as theme
 from sidtrack import (BP, LP, NOISE, PULSE, SAW, TRI, Inst, Song, bars, held, play, render, rhythm)
 
 K4 = "k . . . k . . . k . . . k . . ."
